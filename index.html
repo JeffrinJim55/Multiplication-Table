@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiplication Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      max-height: 200px;
+      overflow-y: scroll;
+    }
+    .result p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Multiplication Table</h1>
+    <input type="number" id="tableNumber" placeholder="Enter Table Number" required>
+    <input type="number" id="count" placeholder="Enter Count (Max 100)" required>
+    <button onclick="generateTable()">Generate Table</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function generateTable() {
+      const tableNumber = document.getElementById("tableNumber").value;
+      let count = document.getElementById("count").value;
+      const resultDiv = document.getElementById("result");
+  
+      // Clear any previous result
+      resultDiv.innerHTML = '';
+  
+      // Check if inputs are valid and count doesn't exceed 100
+      if (tableNumber && count) {
+        count = Math.min(count, 100);  // Set count to 100 if it exceeds 100
+  
+        for (let i = 1; i <= count; i++) {
+          const result = document.createElement('p');
+          result.textContent = `${i} * ${tableNumber} = ${i * tableNumber}`;
+          resultDiv.appendChild(result);
+        }
+      } else {
+        resultDiv.innerHTML = '<p style="color: red;">Please enter valid numbers.</p>';
+      }
+    }
+  </script>  
+</body>
+</html>
